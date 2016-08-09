@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="blog-webapp">
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="blog-application-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blog-application/blog-application">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="blog-domain-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blog-domain/blog-domain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="blog-webapp"/>
+        <property name="java-output-path" value="/blog-webapp/target/classes"/>
+    </wb-module>
+</project-modules>
