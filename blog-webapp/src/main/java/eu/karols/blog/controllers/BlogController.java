@@ -46,8 +46,13 @@ public class BlogController {
 		}
 		return "dodaj";
 	}
+	@RequestMapping("/usun-{id}")
+	public String deleteArticle(@PathVariable("id") Integer id, Model model) {
+			dao.deleteArticle(dao.getArticleById(id));
+			return "redirect:/lista";
+	}
 	
-	@RequestMapping("/article-{id}")
+	@RequestMapping("/artykul-{id}")
 	public String detailsArticle(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("article", dao.getArticleById(id));
 		return "szczegoly";

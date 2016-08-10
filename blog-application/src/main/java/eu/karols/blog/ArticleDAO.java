@@ -17,6 +17,9 @@ public class ArticleDAO {
 	public void deleteArticle(Article article) {
 		articles.remove(article);
 	}
+	public void deleteArticle(Integer article) {
+		articles.remove(0);
+	}
 	
 	public List<Article> getArticles() {
 		return articles;

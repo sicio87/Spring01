@@ -101,7 +101,7 @@ public class Interface {
 			Article choiceArticle = articleDao.getArticles().get(numberArticle);
 			articleDao.deleteArticle(choiceArticle);
 			
-			System.out.println("Tytuł wybranego artykułu to  ");
+			System.out.println("Artykuł został usunięty");
 		} else {
 			System.out.println("Niestety, nie znalazłem artykułu o wybranym numerze :( Sprobój ponownie!");
 		}

@@ -13,6 +13,7 @@
 				<tr>
 					<th>#</th>
 					<th>Tytuł</th>
+					<th>Usuń</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -20,6 +21,7 @@
 				<tr>
 					<td>${status.index}</td>
 					<td><a href="<c:url value="article-${status.index}" />">${article.title}</a></td>
+					<td><a href="<c:url value="usun-${status.index}" />"> - </a></td>
 				</tr>
 				</c:forEach>
 			</tbody>
