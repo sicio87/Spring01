@@ -7,6 +7,7 @@ public class Article {
     private String category;
     private Date publicationDate;
     private String author;
+    
 	public String getTitle() {
 		return title;
 	}

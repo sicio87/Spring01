@@ -20,13 +20,19 @@ public class Interface {
     		System.out.println();
     		System.out.println("Wybierz, co chcesz zrobić, a następnie zatwierdź enterem:");
 	    	System.out.println("[1] Dodaj nowy artykuł");
-	    	System.out.println("[2] Pokaż wszystkie artykuły");
+	    	System.out.println("[2] Usuń wybrany artykuł");
+	    	System.out.println("[3] Pokaż wszystkie artykuły");
 	    	System.out.println("[x] Zakończ");
 			userChoice = getUserInput();
 	    	if (userChoice.equals("1")) {
 	    		addArticle();
 	    	} else if (userChoice.equals("2")) {
 	    		showArticles();
+	    		deleteArticle();
+	    		showArticles();
+	    	} else if (userChoice.equals("3")) {
+	    		showArticles();
+	    		detailsArticle();
 	    	}
     	} while (!userChoice.equalsIgnoreCase("x"));
         
@@ -44,21 +50,8 @@ public class Interface {
 			System.out.println(i + ": " + article.getTitle());
 		}
 		System.out.println();
-		Pattern numberPattern = Pattern.compile("[0-9]+");
-		String numberLoaded;
-		do {
-			System.out.print("Informację, o którym artykule chcesz zobaczyć? ");
-			numberLoaded = getUserInput();
-		} while (!numberPattern.matcher(numberLoaded).matches());
-		
-		Integer numberArticle = Integer.parseInt(numberLoaded);
-		if (articleDao.getArticles().size()>numberArticle) {
-			Article choiceArticle = articleDao.getArticles().get(numberArticle);
-			System.out.println("Tytuł wybranego artykułu to  "+choiceArticle.getTitle()+", kategoria "+choiceArticle.getCategory()+", data publikacji "+choiceArticle.getPublicationDate().toString()+", autor: "+choiceArticle.getAuthor());
-		} else {
-			System.out.println("Niestety, nie znalazłem artykułu o wybranym numerze :( Sprobój ponownie lub go dodaj!");
-		}
 	}
+
 
 	private static void addArticle() {
 		System.out.println();
@@ -87,15 +80,48 @@ public class Interface {
         System.out.print("Podaj kategorię artykułu: ");
         article.setCategory(getUserInput());
 
-        articleDao.addArticle(article);
-
-
         System.out.print("Podaj kto jest autorem artykułu: ");
         article.setAuthor(getUserInput());
 
         articleDao.addArticle(article);
         
         System.out.println("Dziękuję, teraz wiem o artykule prawie wszystko! Dodałem bo do naszego zbioru.");
+	}
+	
+	public static void deleteArticle() {
+		Pattern numberPattern = Pattern.compile("[0-9]+");
+		String numberLoaded;
+		do {
+			System.out.print("Który artykuł chcesz usunąć? ");
+			numberLoaded = getUserInput();
+		} while (!numberPattern.matcher(numberLoaded).matches());
+		
+		Integer numberArticle = Integer.parseInt(numberLoaded);
+		if (articleDao.getArticles().size()>numberArticle) {
+			Article choiceArticle = articleDao.getArticles().get(numberArticle);
+			articleDao.deleteArticle(choiceArticle);
+			
+			System.out.println("Tytuł wybranego artykułu to  ");
+		} else {
+			System.out.println("Niestety, nie znalazłem artykułu o wybranym numerze :( Sprobój ponownie!");
+		}
+	}
+	private static void detailsArticle() {
+		Pattern numberPattern = Pattern.compile("[0-9]+");
+		String numberLoaded;
+		do {
+			System.out.print("Informację, o którym artykule chcesz zobaczyć? ");
+			numberLoaded = getUserInput();
+		} while (!numberPattern.matcher(numberLoaded).matches());
+		
+		Integer numberArticle = Integer.parseInt(numberLoaded);
+		if (articleDao.getArticles().size()>numberArticle) {
+			Article choiceArticle = articleDao.getArticles().get(numberArticle);
+			System.out.println("Tytuł wybranego artykułu to  "+choiceArticle.getTitle()+", kategoria "+choiceArticle.getCategory()+", data publikacji "+choiceArticle.getPublicationDate().toString()+", autor: "+choiceArticle.getAuthor());
+		} else {
+			System.out.println("Niestety, nie znalazłem artykułu o wybranym numerze :( Sprobój ponownie lub go dodaj!");
+		}
+		
 	}
 
     public static String getUserInput() {

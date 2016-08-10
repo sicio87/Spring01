@@ -14,6 +14,9 @@ public class ArticleDAO {
 	public void addArticle(Article article) {
 		articles.add(article);
 	}
+	public void deleteArticle(Article article) {
+		articles.remove(article);
+	}
 	
 	public List<Article> getArticles() {
 		return articles;
